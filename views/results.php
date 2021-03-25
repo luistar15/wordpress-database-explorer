@@ -37,7 +37,7 @@
 
 		<div class="de-tc-item de-results-total">
 			<span class="de-label" data-name="total" data-value="0"></span>
-			<button name="export" class="button" type="button">Export as .CSV</button>
+			<button name="export" class="button" type="button">Export as CSV</button>
 		</div>
 	</div>
 </div>

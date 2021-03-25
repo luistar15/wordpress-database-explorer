@@ -1,9 +1,9 @@
 === Plugin Name ===
 Contributors: luistar15
 Requires at least: 4.7
-Tested up to: 5.4
+Tested up to: 5.7
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 Tags: database, browse, explore, sql, query, table, csv, export, download
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -22,12 +22,17 @@ A simple and basic wordpress database browser and sql runner.
 * Download query results as .csv
 * Truncated long texts can be expanded inplace
 * SQL syntax highlighting
-* Can run multiple sql statements at once
+* Can run multiple sql statments at once
 * Clearly marked NULL values
 
 = Quirks =
 
-* Only returns the results of the first sql statement when running multiple statements
+* Only returns the results of the first sql statment when running multiple statments
+
+= Thanks to =
+* [Prism](prismjs.com/), sql syntax highlighter
+* `escapeMysqlString()` extracted from [mysqljs](https://github.com/mysqljs/sqlstring/blob/master/lib/SqlString.js)
+* Inpired by [Adminer](https://www.adminer.org) and [Database Browser](https://wordpress.org/plugins/database-browser/)
 
 
 == Installation ==
@@ -38,14 +43,13 @@ A simple and basic wordpress database browser and sql runner.
 4. Use it: Tools >> Database Explorer
 
 
-== Screenshots ==
-
-1. Database tables summary
-2. Browse table data
-3. Run custom sql queries
-
-
 == Changelog ==
 
-= 1.0.0 - 2020-04-13 =
+= 1.0.0 - 2020-04-09 =
 * Initial release
+
+= 1.1.0 - 2021-03-24 =
+* Fix results bar display
+* Remove syntax highlighting from run-sql tab
+* Hide sql and table params from url after tab loading
+* Update prismjs

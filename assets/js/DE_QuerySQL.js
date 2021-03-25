@@ -6,8 +6,7 @@ var DE_QuerySQL = {
 	dom: {
 		element : null,
 		inputs  : {},
-		buttons : {},
-		sections: {}
+		buttons : {}
 	},
 
 	query: null,
@@ -36,9 +35,6 @@ var DE_QuerySQL = {
 			dom.buttons[el.name] = el;
 		});
 
-		dom.sections.pre  = dom.element.$('pre.textarea');
-		dom.sections.code = dom.element.$('pre.textarea code');
-
 		this.initial_values = this.getData();
 	},
 
@@ -46,7 +42,7 @@ var DE_QuerySQL = {
 	setup: function (dom) {
 
 		dom.inputs.sql.$addEvent('change', this.updateElements.bind(this));
-		dom.inputs.sql.$addEvent('input', this.highlightSQL.bind(this));
+		dom.inputs.sql.$addEvent('input', this.updateTextareaHeight.bind(this));
 
 		dom.element.$addEvent('submit', this.submit.bind(this));
 	},
@@ -95,7 +91,7 @@ var DE_QuerySQL = {
 			}
 
 			if (k == 'sql') {
-				this.highlightSQL();
+				this.updateTextareaHeight();
 			}
 		}
 	},
@@ -109,15 +105,11 @@ var DE_QuerySQL = {
 	},
 
 
-	highlightSQL: function () {
-		var input    = this.dom.inputs.sql;
-		var sections = this.dom.sections;
+	updateTextareaHeight: function () {
 
-		input.setAttribute('rows', Math.max(input.value.split(/\n/).length, 2));
+		var input = this.dom.inputs.sql;
 
-		sections.code.innerHTML = Prism.highlight(input.value, Prism.languages.sql, 'sql');
-		sections.pre.style.width = input.offsetWidth + 'px';
-		sections.pre.style.height = input.offsetHeight + 'px';
+		input.setAttribute('rows', Math.max(input.value.split(/\n/).length, 1));
 	},
 
 
@@ -127,7 +119,7 @@ var DE_QuerySQL = {
 	getQuery: function () {
 
 		var data = this.getData();
-		var sql = data.sql.trim();
+		var sql  = data.sql.trim();
 
 		if (!data.sql) {
 			return false;
@@ -147,9 +139,14 @@ var DE_QuerySQL = {
 	loadFromUrl: function (data) {
 		this.setData(data);
 		this.updateElements();
+
+		if (data.sql) {
+			history.replaceState(null, '', location.href.replace(/&sql(=[^&#]+)?/, ''));
+		}
 	}
 
 };
 
 
 Object.assign(DE_QuerySQL, $EventManager);
+

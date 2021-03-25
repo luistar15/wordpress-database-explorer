@@ -260,19 +260,20 @@ var DE_Results = {
 		var tbody = $E('tbody');
 		var tr    = $E('tr');
 
-		var total = results.total || results.affected_rows;
+		var query_has_results      = results.columns.length > 0;
+		var query_has_zero_results = query_has_results && results.affected_rows === 0;
+		var query_empty_return     = !query_has_results || query_has_zero_results;
 
 		table.$adopt(
 			$E('thead').$adopt(tr),
 			tbody
 		);
 
-		if (!total) {
-			msg  = 'Successfully executed. ';
-			msg += results.affected_rows + ' affected rows.';
-
-			if (results.columns.length > 0) {
+		if (query_empty_return) {
+			if (query_has_zero_results) {
 				msg = '0 rows found.';
+			} else {
+				msg = results.affected_rows + ' affected rows.';
 			}
 
 			tr.$adopt($E('td', {'class': 'notice notice-success'}).$text(msg));
@@ -319,11 +320,15 @@ var DE_Results = {
 
 	updateTotals: function (results) {
 
-		var total = results.total || results.affected_rows;
+		var query_has_results      = results.columns.length > 0;
+		var query_has_zero_results = query_has_results && results.affected_rows === 0;
+		var query_empty_return     = !query_has_results || query_has_zero_results;
+
+		var total = query_has_results ? (results.total || results.affected_rows) : 0;
 
 		this.setData({total: total});
 
-		this.dom.sections.ctrls[total ? '$removeClass' : '$addClass']('hidden');
+		this.dom.sections.ctrls[query_empty_return ? '$addClass' : '$removeClass']('hidden');
 	},
 
 

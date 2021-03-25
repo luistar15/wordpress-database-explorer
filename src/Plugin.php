@@ -9,7 +9,7 @@ use Exception;
 class Plugin {
 
 	private $name        = 'Database Explorer';
-	private $version     = '1.0.0';
+	private $version     = '0.1.0';
 	private $slug        = 'database-explorer';
 	private $parent_menu = 'tools.php';
 

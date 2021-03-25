@@ -1,8 +1,7 @@
 <form class="de-query de-query-sql" action="#" method="POST">
 	<div class="de-tc-row">
 		<div class="sql-textarea">
-			<pre class="textarea"><code></code></pre>
-			<textarea name="sql" rows="2" spellcheck="false">-- Be careful running DROP, TRUNCATE, DELETE and UPDATE queries</textarea>
+			<textarea name="sql" rows="1" spellcheck="false">-- Be careful running DROP, TRUNCATE, DELETE and UPDATE queries</textarea>
 		</div>
 	</div>
 

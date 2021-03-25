@@ -297,6 +297,8 @@ var DE_QueryBuilder = {
 		if (data.table) {
 			this.onPickTable();
 			this.submit();
+
+			history.replaceState(null, '', location.href.replace(/&table(=[^&#]+)?/, ''));
 		}
 	}
 

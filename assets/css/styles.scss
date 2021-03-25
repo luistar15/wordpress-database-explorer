@@ -61,7 +61,6 @@
 			font-weight: bold;
 			background-color: #F1F1F1;
 			border-bottom-color: #F1F1F1;
-			border-radius: 5px 5px 0 0;
 		}
 
 		a {
@@ -182,9 +181,6 @@
 
 /* -------------------------------------------------------------------------- */
 
-.de-results-sql {
-}
-
 .de-results-data {
 	margin: 8px 0;
 	width: 100%;
@@ -229,11 +225,19 @@
 /* -------------------------------------------------------------------------- */
 
 .sql-textarea {
-	position: relative;
 	box-sizing: border-box;
 	width: 100%;
 
-	code, textarea, .textarea {
+	textarea {
+		display: block;
+		box-sizing: border-box;
+		outline: 0;
+		margin: 0;
+		border: 0;
+		padding: 0;
+		width: 100%;
+		height: auto;
+
 		line-height: 20px;
 		font-size: 16px;
 		font-family: Consolas, monospace;
@@ -251,50 +255,10 @@
 		-moz-hyphens: none;
 		-ms-hyphens: none;
 		hyphens: none;
-	}
 
-	code {
-		display: block;
-		margin: 0;
-		padding: 0;
-		background-color: transparent;
-
-		&::-moz-selection, ::-moz-selection {
-			text-shadow: none;
-		}
-
-		&::selection, ::selection {
-			text-shadow: none;
-		}
-	}
-
-	textarea, .textarea {
-		display: block;
-		box-sizing: border-box;
-		outline: 0;
-		margin: 0;
-		border: 0;
-		padding: 0;
-		width: 100%;
-		height: auto;
-		background: transparent;
-		overflow: hidden;
-	}
-
-	textarea {
-		position: relative;
-		color: transparent;
 		box-shadow: none;
 		caret-color: black;
 		resize: none;
-		z-index: 2;
-	}
-
-	.textarea {
-		position: absolute;
-		left: 0;
-		top: 0;
-		z-index: 1;
 	}
 }
 
